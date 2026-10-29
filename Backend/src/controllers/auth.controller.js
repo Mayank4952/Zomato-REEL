@@ -68,7 +68,7 @@ async function logoutUser(req,res){
 
 
 async function registerFoodPartner(req,res){
-    const {username,email,password}=req.body;
+    const {username,email,password, phone, address, contactName }=req.body;
     const isUserExist=await foodPartnerModel.findOne({
         email
     })
@@ -78,7 +78,10 @@ async function registerFoodPartner(req,res){
     const hash=await bcrypt.hash(password,10)
     const user=await foodPartnerModel.create({
         username,email,
-        password:hash
+        password:hash,
+        phone,
+        address,
+        contactName
     })
     const token =jwt.sign({
         id:user._id
@@ -89,8 +92,12 @@ async function registerFoodPartner(req,res){
     return res.status(201).json({
         message:"USER IS CREATED SUCCESSFULLY",
         user:{
+             _id: user._id,
             username:user.username,
-            email:user.email
+            email:user.email,
+             address: user.address,
+            contactName: user.contactName,
+            phone: user.phone
         }
     })
 }
