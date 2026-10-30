@@ -18,8 +18,8 @@ const FoodPartnerRegister = () => {
     const password = e.target.password.value;
     const address = e.target.address.value;
 
-    axios.post("http://localhost:3000/api/auth/food-partner/register", {
-      name:businessName,
+    axios.post("http://localhost:3000/api/auth/foodPartner/register", {
+      username:businessName,
       contactName,
       phone,
       email,

@@ -1,7 +1,6 @@
 const express=require("express")
 const router=express.Router()
 const authController=require('../controllers/auth.controller')
-const { route } = require("../app")
 
 //user auth apis
 router.post('/user/register',authController.registerUser)
